@@ -1,0 +1,1571 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ajith S - Portfolio</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        :root {
+            --primary-color: #00ffff;
+            --secondary-color: #ff00ff;
+            --accent-color: #00ff88;
+            --dark-bg: #0a0a0a;
+            --light-bg: #1a1a1a;
+            --text-color: #ffffff;
+            --card-bg: rgba(26, 26, 26, 0.8);
+        }
+
+        body {
+            background-color: var(--dark-bg);
+            color: var(--text-color);
+            overflow-x: hidden;
+        }
+
+        /* Enhanced Background with Circuit Board Image */
+        .tech-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            overflow: hidden;
+        }
+
+        .circuit-bg-image {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('https://z-cdn-media.chatglm.cn/files/aba1686e-6a5e-4ecb-842b-28808dac597b_images.jpg?auth_key=1863707262-f4422672d24f4467aeab6cadbea8961e-0-6df5d0802b0fd10e603bc39d12e681eb');
+            background-size: cover;
+            background-position: center;
+            opacity: 0.2;
+            filter: hue-rotate(180deg) saturate(1.5);
+        }
+
+        .circuit-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(0, 255, 255, 0.1), rgba(255, 0, 255, 0.1));
+            mix-blend-mode: overlay;
+        }
+
+        .java-code {
+            position: absolute;
+            color: rgba(0, 255, 136, 0.15);
+            font-family: monospace;
+            font-size: 14px;
+            white-space: pre;
+            line-height: 1.4;
+            opacity: 0;
+            animation: fadeInCode 10s infinite;
+            text-shadow: 0 0 5px rgba(0, 255, 136, 0.3);
+        }
+
+        @keyframes fadeInCode {
+            0%, 100% { opacity: 0; }
+            50% { opacity: 0.2; }
+        }
+
+        .vlsicircuit {
+            position: absolute;
+            stroke: rgba(0, 255, 255, 0.2);
+            stroke-width: 1;
+            fill: none;
+            animation: circuitGlow 8s infinite alternate;
+        }
+
+        @keyframes circuitGlow {
+            0% { 
+                stroke: rgba(0, 255, 255, 0.1);
+                stroke-width: 1;
+            }
+            100% { 
+                stroke: rgba(255, 0, 255, 0.2);
+                stroke-width: 1.5;
+            }
+        }
+
+        .chip-element {
+            position: absolute;
+            border: 1px solid rgba(0, 255, 255, 0.15);
+            background: rgba(0, 255, 255, 0.03);
+            animation: chipPulse 6s infinite alternate;
+        }
+
+        @keyframes chipPulse {
+            0% { 
+                border-color: rgba(0, 255, 255, 0.1);
+                background: rgba(0, 255, 255, 0.01);
+            }
+            100% { 
+                border-color: rgba(255, 0, 255, 0.2);
+                background: rgba(255, 0, 255, 0.05);
+            }
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background-color: rgba(10, 10, 10, 0.8);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            padding: 1rem 0;
+            transition: all 0.3s ease;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--primary-color);
+            text-shadow: 0 0 10px var(--primary-color);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .logo i {
+            font-size: 1.2rem;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: var(--text-color);
+            text-decoration: none;
+            position: relative;
+            transition: all 0.3s ease;
+            padding: 0.5rem 0;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--primary-color);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* Sections */
+        section {
+            min-height: 100vh;
+            padding: 5rem 2rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* Home Section */
+        #home {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            position: relative;
+        }
+
+        .hero-content {
+            z-index: 1;
+            background: rgba(10, 10, 10, 0.7);
+            padding: 3rem;
+            border-radius: 20px;
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(0, 255, 255, 0.2);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            max-width: 800px;
+        }
+
+        .hero-title {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-shadow: 0 0 20px rgba(0, 255, 255, 0.5);
+            animation: glow 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes glow {
+            from {
+                text-shadow: 0 0 10px rgba(0, 255, 255, 0.5), 0 0 20px rgba(0, 255, 255, 0.3);
+            }
+            to {
+                text-shadow: 0 0 20px rgba(0, 255, 255, 0.8), 0 0 30px rgba(0, 255, 255, 0.5);
+            }
+        }
+
+        /* Enhanced Department Running Animation */
+        .department-container {
+            width: 100%;
+            overflow: hidden;
+            position: relative;
+            margin: 2rem 0;
+            padding: 1rem 0;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 10px;
+            border: 1px solid rgba(0, 255, 255, 0.1);
+        }
+
+        .department-track {
+            display: flex;
+            animation: runText 15s linear infinite;
+            white-space: nowrap;
+        }
+
+        .department-text {
+            font-size: 1.8rem;
+            font-weight: bold;
+            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color), var(--primary-color));
+            background-size: 200% auto;
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            animation: gradientShift 3s ease infinite, pulse 2s ease-in-out infinite;
+            padding: 0 3rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        @keyframes runText {
+            0% {
+                transform: translateX(0);
+            }
+            100% {
+                transform: translateX(-50%);
+            }
+        }
+
+        @keyframes gradientShift {
+            0% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.05);
+            }
+        }
+
+        /* Typing Effect for Subtitle */
+        .typing-container {
+            overflow: hidden;
+            border-right: 3px solid var(--primary-color);
+            white-space: nowrap;
+            margin: 0 auto;
+            animation: typing 3.5s steps(40, end), blink-caret 0.75s step-end infinite;
+            font-size: 1.2rem;
+            color: var(--text-color);
+            opacity: 0.9;
+        }
+
+        @keyframes typing {
+            from { width: 0 }
+            to { width: 100% }
+        }
+
+        @keyframes blink-caret {
+            from, to { border-color: transparent }
+            50% { border-color: var(--primary-color) }
+        }
+
+        .hero-subtitle {
+            margin-top: 2rem;
+            font-size: 1.2rem;
+            max-width: 800px;
+            line-height: 1.6;
+            opacity: 0;
+            animation: fadeInUp 1s ease forwards;
+            animation-delay: 4s;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .cta-buttons {
+            margin-top: 3rem;
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            opacity: 0;
+            animation: fadeInUp 1s ease forwards;
+            animation-delay: 4.5s;
+        }
+
+        .btn {
+            padding: 0.8rem 1.5rem;
+            border: none;
+            border-radius: 5px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn-primary {
+            background-color: var(--primary-color);
+            color: var(--dark-bg);
+            box-shadow: 0 0 15px rgba(0, 255, 255, 0.5);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 20px rgba(0, 255, 255, 0.7);
+        }
+
+        .btn-secondary {
+            background-color: transparent;
+            color: var(--primary-color);
+            border: 2px solid var(--primary-color);
+        }
+
+        .btn-secondary:hover {
+            background-color: var(--primary-color);
+            color: var(--dark-bg);
+        }
+
+        /* Enhanced About Section */
+        #about {
+            padding-top: 6rem;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            text-align: center;
+            position: relative;
+            color: var(--primary-color);
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 3px;
+            background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
+        }
+
+        /* New About Section Layout */
+        .about-container {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .about-header {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+            background: var(--card-bg);
+            border-radius: 15px;
+            padding: 2rem;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(0, 255, 255, 0.2);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .about-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 5px;
+            height: 100%;
+            background: linear-gradient(to bottom, var(--primary-color), var(--secondary-color));
+        }
+
+        .about-image {
+            flex-shrink: 0;
+            position: relative;
+        }
+
+        .profile-img {
+            width: 250px;
+            height: 250px;
+            border-radius: 50%;
+            border: 3px solid var(--primary-color);
+            box-shadow: 0 0 20px rgba(0, 255, 255, 0.5);
+            object-fit: cover;
+            transition: all 0.3s ease;
+        }
+
+        .profile-img:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 30px rgba(0, 255, 255, 0.7);
+        }
+
+        .profile-links {
+            position: absolute;
+            bottom: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 10px;
+            background: rgba(10, 10, 10, 0.8);
+            padding: 8px;
+            border-radius: 20px;
+        }
+
+        .profile-links a {
+            width: 36px;
+            height: 36px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 50%;
+            background: rgba(0, 255, 255, 0.1);
+            color: var(--primary-color);
+            transition: all 0.3s ease;
+        }
+
+        .profile-links a:hover {
+            background: var(--primary-color);
+            color: var(--dark-bg);
+            transform: translateY(-3px);
+        }
+
+        .about-info {
+            flex-grow: 1;
+        }
+
+        .about-name {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+            color: var(--primary-color);
+        }
+
+        .about-title {
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+            color: var(--secondary-color);
+        }
+
+        .about-description {
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+
+        .about-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .tag {
+            background: rgba(0, 255, 255, 0.1);
+            color: var(--primary-color);
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            border: 1px solid rgba(0, 255, 255, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .tag:hover {
+            background: rgba(0, 255, 255, 0.2);
+            transform: translateY(-2px);
+        }
+
+        /* Timeline Section */
+        .timeline-container {
+            margin-top: 2rem;
+            position: relative;
+        }
+
+        .timeline-title {
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            color: var(--primary-color);
+            text-align: center;
+        }
+
+        .timeline {
+            position: relative;
+            padding: 20px 0;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 2px;
+            height: 100%;
+            background: linear-gradient(to bottom, var(--primary-color), var(--secondary-color));
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 2rem;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+        }
+
+        .timeline-content {
+            width: 45%;
+            background: var(--card-bg);
+            border-radius: 10px;
+            padding: 1.5rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            position: relative;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(0, 255, 255, 0.1);
+        }
+
+        .timeline-content:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 255, 255, 0.2);
+            border: 1px solid rgba(0, 255, 255, 0.3);
+        }
+
+        .timeline-item:nth-child(odd) .timeline-content {
+            margin-right: auto;
+            margin-left: 0;
+        }
+
+        .timeline-item:nth-child(even) .timeline-content {
+            margin-left: auto;
+            margin-right: 0;
+        }
+
+        .timeline-dot {
+            position: absolute;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: var(--dark-bg);
+            border: 3px solid var(--primary-color);
+            z-index: 1;
+        }
+
+        .timeline-date {
+            font-size: 0.9rem;
+            color: var(--secondary-color);
+            margin-bottom: 0.5rem;
+        }
+
+        .timeline-title-text {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+            color: var(--primary-color);
+        }
+
+        .timeline-description {
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+
+        /* Skills Section */
+        .skills-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .skill-category {
+            background: var(--card-bg);
+            border-radius: 15px;
+            padding: 1.5rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(0, 255, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .skill-category:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 255, 255, 0.2);
+            border: 1px solid rgba(0, 255, 255, 0.3);
+        }
+
+        .skill-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .skill-icon {
+            width: 40px;
+            height: 40px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 50%;
+            background: rgba(0, 255, 255, 0.1);
+            color: var(--primary-color);
+            margin-right: 1rem;
+            font-size: 1.2rem;
+        }
+
+        .skill-title {
+            font-size: 1.3rem;
+            color: var(--primary-color);
+        }
+
+        .skill-items {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.8rem;
+        }
+
+        .skill-item {
+            display: flex;
+            align-items: center;
+            background: rgba(0, 255, 255, 0.05);
+            border-radius: 8px;
+            padding: 0.5rem 1rem;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .skill-item:hover {
+            background: rgba(0, 255, 255, 0.15);
+            transform: translateY(-3px);
+        }
+
+        .skill-name {
+            margin-right: 0.5rem;
+            font-size: 0.95rem;
+        }
+
+        .skill-level {
+            display: flex;
+            gap: 2px;
+        }
+
+        .skill-dot {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: rgba(0, 255, 255, 0.3);
+        }
+
+        .skill-dot.filled {
+            background: var(--primary-color);
+            box-shadow: 0 0 5px var(--primary-color);
+        }
+
+        /* Projects Section */
+        .projects-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .project-card {
+            background-color: var(--light-bg);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .project-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 255, 255, 0.2);
+        }
+
+        .project-image {
+            height: 200px;
+            background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 3rem;
+            color: var(--dark-bg);
+        }
+
+        .project-content {
+            padding: 1.5rem;
+        }
+
+        .project-title {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+            color: var(--primary-color);
+        }
+
+        .project-tech {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin: 1rem 0;
+        }
+
+        .tech-tag {
+            background-color: rgba(0, 255, 255, 0.2);
+            color: var(--primary-color);
+            padding: 0.2rem 0.5rem;
+            border-radius: 3px;
+            font-size: 0.8rem;
+        }
+
+        /* Contact Section */
+        .contact-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .contact-item i {
+            font-size: 1.5rem;
+            color: var(--primary-color);
+            width: 40px;
+            height: 40px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 50%;
+            background-color: rgba(0, 255, 255, 0.1);
+        }
+
+        .contact-form {
+            background-color: var(--light-bg);
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: var(--primary-color);
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.8rem;
+            background-color: var(--dark-bg);
+            border: 1px solid rgba(0, 255, 255, 0.3);
+            border-radius: 5px;
+            color: var(--text-color);
+            transition: all 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 10px rgba(0, 255, 255, 0.2);
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 2rem;
+            background-color: var(--light-bg);
+            margin-top: 2rem;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .social-links a {
+            color: var(--text-color);
+            font-size: 1.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .social-links a:hover {
+            color: var(--primary-color);
+            transform: translateY(-3px);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .hero-title {
+                font-size: 2.5rem;
+            }
+
+            .department-text {
+                font-size: 1.4rem;
+            }
+
+            .about-header {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .timeline::before {
+                left: 20px;
+            }
+
+            .timeline-dot {
+                left: 20px;
+            }
+
+            .timeline-content {
+                width: calc(100% - 60px);
+                margin-left: 60px !important;
+            }
+
+            .contact-container {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Enhanced Background with Circuit Board Image -->
+    <div class="tech-bg" id="techBg">
+        <div class="circuit-bg-image"></div>
+        <div class="circuit-overlay"></div>
+    </div>
+
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <div class="logo">
+                <i class="fas fa-code"></i>
+                Ajith S
+            </div>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Home Section -->
+    <section id="home">
+        <div class="hero-content">
+            <h1 class="hero-title">Ajith S</h1>
+            
+            <!-- Enhanced Running Department Animation -->
+            <div class="department-container">
+                <div class="department-track">
+                    <span class="department-text">Electronics and Communication Engineering</span>
+                    <span class="department-text">Electronics and Communication Engineering</span>
+                    <span class="department-text">Electronics and Communication Engineering</span>
+                    <span class="department-text">Electronics and Communication Engineering</span>
+                </div>
+            </div>
+
+            <div class="typing-container">Aspiring Software & Digital Developer</div>
+            <p class="hero-subtitle">Skilled in Core Java, web technologies, and GitHub, aiming to build efficient web applications and grow through continuous learning.</p>
+            <div class="cta-buttons">
+                <a href="#projects" class="btn btn-primary">View Projects</a>
+                <a href="#contact" class="btn btn-secondary">Contact Me</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Enhanced About Section -->
+    <section id="about">
+        <h2 class="section-title">About Me</h2>
+        <div class="about-container">
+            <!-- About Header with Profile -->
+            <div class="about-header">
+                <div class="about-image">
+                    <!-- Using the provided image -->
+                    <img src="https://z-cdn-media.chatglm.cn/files/1407f01b-4f1e-43fa-82ad-9574101510c8_WhatsApp%20Image%202024-12-11%20at%2020.02.04_4ac29603.jpg?auth_key=1863706953-e3ee09454dc34f39949ee5d46aa30309-0-cb35051766f863ce4c8b8a4e6d2a14c9" alt="Ajith S" class="profile-img">
+                    <div class="profile-links">
+                        <a href="https://www.linkedin.com/in/ajithsubramani05" target="_blank" title="LinkedIn">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                        <a href="https://github.com/ajithsubramani05" target="_blank" title="GitHub">
+                            <i class="fab fa-github"></i>
+                        </a>
+                        <a href="mailto:ajithsubramani05@gmail.com" title="Email">
+                            <i class="fas fa-envelope"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="about-info">
+                    <h3 class="about-name">Ajith S</h3>
+                    <p class="about-title">Electronics and Communication Engineering</p>
+                    <p class="about-description">
+                        I'm a passionate Electronics and Communication Engineering student with a keen interest in software development and digital design. My academic journey at V.S.B. Engineering College has equipped me with strong technical skills in Java, web development, and hardware description languages like Verilog and SystemVerilog.
+                    </p>
+                    <p class="about-description">
+                        I'm constantly exploring new technologies and seeking opportunities to apply my knowledge in real-world scenarios. My experience in both software and hardware domains allows me to approach problems from multiple perspectives and develop comprehensive solutions.
+                    </p>
+                    <div class="about-tags">
+                        <span class="tag">Java Developer</span>
+                        <span class="tag">Web Developer</span>
+                        <span class="tag">Digital Design</span>
+                        <span class="tag">VLSI</span>
+                        <span class="tag">Problem Solver</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Timeline for Education and Experience -->
+            <div class="timeline-container">
+                <h3 class="timeline-title">Education & Experience</h3>
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-content">
+                            <div class="timeline-date">2021 - Present</div>
+                            <div class="timeline-title-text">B.E. Electronics and Communication Engineering</div>
+                            <div class="timeline-description">
+                                V.S.B. Engineering College, Karur<br>
+                                CGPA: 7.5 (Till 6th semester)
+                            </div>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-content">
+                            <div class="timeline-date">June 2024 – July 2024</div>
+                            <div class="timeline-title-text">Senior Assistant - Internship</div>
+                            <div class="timeline-description">
+                                Instakart Services Pvt. Ltd. (via Quess Corp Ltd.), Coimbatore<br>
+                                Assisted in inventory and dispatch operations using warehouse management systems.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-content">
+                            <div class="timeline-date">2019 - 2021</div>
+                            <div class="timeline-title-text">Higher Secondary Education</div>
+                            <div class="timeline-description">
+                                Karur Saraswathi Vidyalaya Higher Secondary School, Karur, Tamil Nadu<br>
+                                State Board - 78.00%
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Skills Section with Interactive Elements -->
+            <h3 class="timeline-title">Skills & Expertise</h3>
+            <div class="skills-container">
+                <div class="skill-category">
+                    <div class="skill-header">
+                        <div class="skill-icon">
+                            <i class="fas fa-code"></i>
+                        </div>
+                        <h4 class="skill-title">Programming</h4>
+                    </div>
+                    <div class="skill-items">
+                        <div class="skill-item">
+                            <span class="skill-name">Java</span>
+                            <div class="skill-level">
+                                <span class="skill-dot filled"></span>
+                                <span class="skill-dot filled"></span>
+                                <span class="skill-dot filled"></span>
+                                <span class="skill-dot filled"></span>
+                                <span class="skill-dot"></span>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <span class="skill-name">HTML5</span>
+                            <div class="skill-level">
+                                <span class="skill-dot filled"></span>
+                                <span class="skill-dot filled"></span>
+                                <span class="skill-dot filled"></span>
+                                <span class="skill-dot filled"></span>
+                                <span class="skill-dot"></span>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <span class="skill-name">CSS3</span>
+                            <div class="skill-level">
+                                <span class="skill-dot filled"></span>
+                                <span class="skill-dot filled"></span>
+                                <span class="skill-dot filled"></span>
+                                <span class="skill-dot"></span>
+                                <span class="skill-dot"></span>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <span class="skill-name">JavaScript</span>
+                            <div class="skill-level">
+                                <span class="skill-dot filled"></span>
+                                <span class="skill-dot filled"></span>
+                                <span class="skill-dot filled"></span>
+                                <span class="skill-dot"></span>
+                                <span class="skill-dot"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <div class="skill-header">
+                        <div class="skill-icon">
+                            <i class="fas fa-microchip"></i>
+                        </div>
+                        <h4 class="skill-title">HDL & Digital Design</h4>
+                    </div>
+                    <div class="skill-items">
+                        <div class="skill-item">
+                            <span class="skill-name">Verilog</span>
+                            <div class="skill-level">
+                                <span class="skill-dot filled"></span>
+                                <span class="skill-dot filled"></span>
+                                <span class="skill-dot filled"></span>
+                                <span class="skill-dot filled"></span>
+                                <span class="skill-dot"></span>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <span class="skill-name">SystemVerilog</span>
+                            <div class="skill-level">
+                                <span class="skill-dot filled"></span>
+                                <span class="skill-dot filled"></span>
+                                <span class="skill-dot filled"></span>
+                                <span class="skill-dot"></span>
+                                <span class="skill-dot"></span>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <span class="skill-name">VHDL</span>
+                            <div class="skill-level">
+                                <span class="skill-dot filled"></span>
+                                <span class="skill-dot filled"></span>
+                                <span class="skill-dot filled"></span>
+                                <span class="skill-dot"></span>
+                                <span class="skill-dot"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <div class="skill-header">
+                        <div class="skill-icon">
+                            <i class="fas fa-database"></i>
+                        </div>
+                        <h4 class="skill-title">Database</h4>
+                    </div>
+                    <div class="skill-items">
+                        <div class="skill-item">
+                            <span class="skill-name">MongoDB</span>
+                            <div class="skill-level">
+                                <span class="skill-dot filled"></span>
+                                <span class="skill-dot filled"></span>
+                                <span class="skill-dot filled"></span>
+                                <span class="skill-dot"></span>
+                                <span class="skill-dot"></span>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <span class="skill-name">SQL (Basic)</span>
+                            <div class="skill-level">
+                                <span class="skill-dot filled"></span>
+                                <span class="skill-dot filled"></span>
+                                <span class="skill-dot"></span>
+                                <span class="skill-dot"></span>
+                                <span class="skill-dot"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <div class="skill-header">
+                        <div class="skill-icon">
+                            <i class="fas fa-tools"></i>
+                        </div>
+                        <h4 class="skill-title">Tools</h4>
+                    </div>
+                    <div class="skill-items">
+                        <div class="skill-item">
+                            <span class="skill-name">Git/GitHub</span>
+                            <div class="skill-level">
+                                <span class="skill-dot filled"></span>
+                                <span class="skill-dot filled"></span>
+                                <span class="skill-dot filled"></span>
+                                <span class="skill-dot filled"></span>
+                                <span class="skill-dot"></span>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <span class="skill-name">Xilinx Vivado</span>
+                            <div class="skill-level">
+                                <span class="skill-dot filled"></span>
+                                <span class="skill-dot filled"></span>
+                                <span class="skill-dot filled"></span>
+                                <span class="skill-dot"></span>
+                                <span class="skill-dot"></span>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <span class="skill-name">EDA Playground</span>
+                            <div class="skill-level">
+                                <span class="skill-dot filled"></span>
+                                <span class="skill-dot filled"></span>
+                                <span class="skill-dot"></span>
+                                <span class="skill-dot"></span>
+                                <span class="skill-dot"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <div class="skill-header">
+                        <div class="skill-icon">
+                            <i class="fas fa-heart"></i>
+                        </div>
+                        <h4 class="skill-title">Areas of Interest</h4>
+                    </div>
+                    <div class="skill-items">
+                        <div class="skill-item">
+                            <span class="skill-name">Web Development</span>
+                        </div>
+                        <div class="skill-item">
+                            <span class="skill-name">Digital Design</span>
+                        </div>
+                        <div class="skill-item">
+                            <span class="skill-name">Artificial Intelligence</span>
+                        </div>
+                        <div class="skill-item">
+                            <span class="skill-name">6G Non-Terrestrial Networks</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <div class="skill-header">
+                        <div class="skill-icon">
+                            <i class="fas fa-certificate"></i>
+                        </div>
+                        <h4 class="skill-title">Certifications</h4>
+                    </div>
+                    <div class="skill-items">
+                        <div class="skill-item">
+                            <span class="skill-name">Infosys SpringBoard - Java</span>
+                        </div>
+                        <div class="skill-item">
+                            <span class="skill-name">Infosys SpringBoard - Semiconductor</span>
+                        </div>
+                        <div class="skill-item">
+                            <span class="skill-name">Mind Luster - VHDL Verilog</span>
+                        </div>
+                        <div class="skill-item">
+                            <span class="skill-name">Infosys SpringBoard - Git/GitHub</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects">
+        <h2 class="section-title">Projects</h2>
+        <div class="projects-container">
+            <div class="project-card">
+                <div class="project-image">
+                    <i class="fas fa-car"></i>
+                </div>
+                <div class="project-content">
+                    <h3 class="project-title">Car Rental System</h3>
+                    <p>Implemented a console-based application using OOPS principles, enabling customer management, car availability, and rental cost calculation.</p>
+                    <div class="project-tech">
+                        <span class="tech-tag">Java</span>
+                        <span class="tech-tag">OOPS</span>
+                    </div>
+                </div>
+            </div>
+            <div class="project-card">
+                <div class="project-image">
+                    <i class="fas fa-utensils"></i>
+                </div>
+                <div class="project-content">
+                    <h3 class="project-title">External Foodie</h3>
+                    <p>Built a responsive online food ordering platform with HTML5, CSS3, JavaScript, and JSON for real-time data storage/retrieval.</p>
+                    <div class="project-tech">
+                        <span class="tech-tag">HTML5</span>
+                        <span class="tech-tag">CSS3</span>
+                        <span class="tech-tag">JavaScript</span>
+                        <span class="tech-tag">JSON</span>
+                    </div>
+                </div>
+            </div>
+            <div class="project-card">
+                <div class="project-image">
+                    <i class="fas fa-traffic-light"></i>
+                </div>
+                <div class="project-content">
+                    <h3 class="project-title">Traffic Light Controller</h3>
+                    <p>Designed and simulated a traffic light controller using Verilog HDL with FSM, validated for speed and area optimization.</p>
+                    <div class="project-tech">
+                        <span class="tech-tag">SystemVerilog</span>
+                        <span class="tech-tag">Verilog HDL</span>
+                        <span class="tech-tag">FSM</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact">
+        <h2 class="section-title">Contact Me</h2>
+        <div class="contact-container">
+            <div class="contact-info">
+                <div class="contact-item">
+                    <i class="fas fa-envelope"></i>
+                    <div>
+                        <h3>Email</h3>
+                        <p>ajithsubramani05@gmail.com</p>
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-phone"></i>
+                    <div>
+                        <h3>Phone</h3>
+                        <p>+91 8148324926</p>
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <i class="fab fa-linkedin"></i>
+                    <div>
+                        <h3>LinkedIn</h3>
+                        <p>linkedin.com/in/ajithsubramani05</p>
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <i class="fab fa-github"></i>
+                    <div>
+                        <h3>GitHub</h3>
+                        <p>github.com/ajithsubramani05</p>
+                    </div>
+                </div>
+            </div>
+            <div class="contact-form">
+                <form id="contactForm">
+                    <div class="form-group">
+                        <label for="name">Name</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Message</label>
+                        <textarea id="message" name="message" rows="5" required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Send Message</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="social-links">
+            <a href="https://www.linkedin.com/in/ajithsubramani05" target="_blank"><i class="fab fa-linkedin"></i></a>
+            <a href="https://github.com/ajithsubramani05" target="_blank"><i class="fab fa-github"></i></a>
+            <a href="mailto:ajithsubramani05@gmail.com"><i class="fas fa-envelope"></i></a>
+        </div>
+        <p>&copy; 2024 Ajith S. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // Create enhanced Java and VLSI background with circuit board image
+        function createTechBackground() {
+            const techBg = document.getElementById('techBg');
+            const width = window.innerWidth;
+            const height = window.innerHeight;
+
+            // Java code snippets
+            const javaCodeSnippets = [
+                `public class Portfolio {
+    private String name = "Ajith S";
+    private String dept = "ECE";
+    
+    public void displaySkills() {
+        System.out.println("Java, VLSI, Web Dev");
+    }
+}`,
+                `interface DigitalDesigner {
+    void designCircuit();
+    boolean optimizeForPower();
+}`,
+                `class VLSIProcessor implements DigitalDesigner {
+    @Override
+    public void designCircuit() {
+        // Implementation
+    }
+}`,
+                `public enum Skill {
+    JAVA, HTML, VERILOG, SQL;
+}`,
+                `@RestController
+@RequestMapping("/api")
+public class PortfolioController {
+    @GetMapping("/skills")
+    public List<Skill> getSkills() {
+        return Arrays.asList(Skill.values());
+    }
+}`
+            ];
+
+            // Create Java code elements
+            for (let i = 0; i < 5; i++) {
+                const codeElement = document.createElement('div');
+                codeElement.classList.add('java-code');
+                codeElement.textContent = javaCodeSnippets[i % javaCodeSnippets.length];
+                codeElement.style.top = `${Math.random() * height}px`;
+                codeElement.style.left = `${Math.random() * width}px`;
+                codeElement.style.animationDelay = `${i * 2}s`;
+                techBg.appendChild(codeElement);
+            }
+
+            // Create VLSI circuit elements
+            const circuitSvg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+            circuitSvg.classList.add('vlsicircuit');
+            circuitSvg.setAttribute('width', width);
+            circuitSvg.setAttribute('height', height);
+            circuitSvg.style.position = 'absolute';
+            circuitSvg.style.top = '0';
+            circuitSvg.style.left = '0';
+
+            // Add circuit paths
+            for (let i = 0; i < 10; i++) {
+                const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+                const startX = Math.random() * width;
+                const startY = Math.random() * height;
+                const midX = Math.random() * width;
+                const midY = Math.random() * height;
+                const endX = Math.random() * width;
+                const endY = Math.random() * height;
+                
+                path.setAttribute('d', `M${startX},${startY} L${midX},${midY} L${endX},${endY}`);
+                path.style.animationDelay = `${i * 0.5}s`;
+                circuitSvg.appendChild(path);
+            }
+
+            techBg.appendChild(circuitSvg);
+
+            // Create chip elements
+            for (let i = 0; i < 15; i++) {
+                const chip = document.createElement('div');
+                chip.classList.add('chip-element');
+                const size = Math.random() * 100 + 50;
+                chip.style.width = `${size}px`;
+                chip.style.height = `${size}px`;
+                chip.style.top = `${Math.random() * height}px`;
+                chip.style.left = `${Math.random() * width}px`;
+                chip.style.borderRadius = '5px';
+                chip.style.animationDelay = `${i * 0.3}s`;
+                techBg.appendChild(chip);
+            }
+
+            // Add VLSI gates and components
+            for (let i = 0; i < 20; i++) {
+                const gate = document.createElement('div');
+                gate.style.position = 'absolute';
+                gate.style.width = '30px';
+                gate.style.height = '30px';
+                gate.style.border = '1px solid rgba(255, 0, 255, 0.15)';
+                gate.style.borderRadius = '50%';
+                gate.style.top = `${Math.random() * height}px`;
+                gate.style.left = `${Math.random() * width}px`;
+                gate.style.boxShadow = '0 0 5px rgba(255, 0, 255, 0.2)';
+                gate.style.animation = `chipPulse ${6 + Math.random() * 4}s infinite alternate`;
+                gate.style.animationDelay = `${Math.random() * 2}s`;
+                techBg.appendChild(gate);
+            }
+        }
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Form submission handler
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Get form values
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const message = document.getElementById('message').value;
+            
+            // Here you would normally send the data to a server
+            // For this example, we'll just show an alert
+            alert(`Thank you for your message, ${name}! I'll get back to you at ${email} soon.`);
+            
+            // Reset form
+            this.reset();
+        });
+
+        // Add animation to skill cards when they come into view
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Apply observer to skill cards and project cards
+        document.querySelectorAll('.skill-category, .project-card, .timeline-item').forEach(card => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(20px)';
+            card.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+            observer.observe(card);
+        });
+
+        // Initialize the tech background
+        createTechBackground();
+
+        // Recreate tech background on window resize
+        window.addEventListener('resize', () => {
+            // Clear dynamic elements but keep the circuit board image
+            const elementsToRemove = document.querySelectorAll('.java-code, .vlsicircuit, .chip-element');
+            elementsToRemove.forEach(el => el.remove());
+            
+            // Recreate dynamic elements
+            createTechBackground();
+        });
+
+        // Add hover pause to department animation
+        const departmentTrack = document.querySelector('.department-track');
+        const departmentContainer = document.querySelector('.department-container');
+        
+        departmentContainer.addEventListener('mouseenter', () => {
+            departmentTrack.style.animationPlayState = 'paused';
+        });
+        
+        departmentContainer.addEventListener('mouseleave', () => {
+            departmentTrack.style.animationPlayState = 'running';
+        });
+
+        // Add click functionality to skill items
+        document.querySelectorAll('.skill-item').forEach(item => {
+            item.addEventListener('click', function() {
+                const skillName = this.querySelector('.skill-name').textContent;
+                alert(`You clicked on ${skillName}! In a full implementation, this could show more details or projects related to this skill.`);
+            });
+        });
+
+        // Add click functionality to tags
+        document.querySelectorAll('.tag').forEach(tag => {
+            tag.addEventListener('click', function() {
+                const tagName = this.textContent;
+                alert(`You clicked on ${tagName}! In a full implementation, this could filter projects or show related content.`);
+            });
+        });
+
+        // Add click functionality to profile links
+        document.querySelectorAll('.profile-links a').forEach(link => {
+            link.addEventListener('click', function(e) {
+                // For demonstration, we'll use a confirm dialog instead of directly navigating
+                const href = this.getAttribute('href');
+                const title = this.getAttribute('title');
+                
+                if (href.startsWith('mailto:')) {
+                    // Allow email links to work normally
+                    return;
+                }
+                
+                // For external links, show a confirmation
+                const confirmed = confirm(`Open your ${title} profile in a new tab?`);
+                if (!confirmed) {
+                    e.preventDefault();
+                }
+            });
+        });
+    </script>
+</body>
+</html>
